@@ -26,7 +26,7 @@ jobs:
           sshpass -p "${{ secrets.SERVER_PASSWORD_DEV }}" ssh -o StrictHostKeyChecking=no "${{ secrets.SERVER_USER_DEV }}@${{ secrets.SERVER_HOST_DEV}}" << 'EOF'
           echo "Connected to the server"
           # Step 3.1: Navigate to the project directory
-          cd /var/www/monitoring-voucher-app/monitoring-_voucher  # Replace with the path to your project
+          cd /var/www/monitoring-voucher-app/monitoring_voucher  # Replace with the path to your project
 
           # Step 3.3: Pull the latest changes from GitHub (development branch)
           git pull origin development
