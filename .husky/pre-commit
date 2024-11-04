@@ -1,0 +1,4 @@
+npm prettier:format
+npm lint:build
+npm test
+git add $(git diff --name-only --staged)
