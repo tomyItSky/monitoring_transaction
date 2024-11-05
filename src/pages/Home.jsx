@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import TitleHeader from "../component/TitleHeader";
-import { apiUsers, summaryData } from "../utils/voucherAPI";
-import CardDashboard from "../component/CardDashboard";
-import { BsTicketPerforated } from "react-icons/bs";
-import { CiFilter } from "react-icons/ci";
-import CustomDatePicker from "../component/CustomDatePicker";
+import { React, useEffect, useState } from 'react';
+import TitleHeader from '../component/TitleHeader';
+import { apiUsers, summaryData } from '../utils/voucherAPI';
+import CardDashboard from '../component/CardDashboard';
+import { BsTicketPerforated } from 'react-icons/bs';
+import { CiFilter } from 'react-icons/ci';
+import CustomDatePicker from '../component/CustomDatePicker';
 
 function Home() {
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [dataSummary, setDataSummary] = useState("");
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [dataSummary, setDataSummary] = useState('');
   const [dateFilter, setDateFilter] = useState(false);
   const [selectedRange, setSelectedRange] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,6 @@ function Home() {
   useEffect(() => {
     fetchDataUsers();
     summary();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDateApply = (range) => {
@@ -42,13 +41,13 @@ function Home() {
       if (selectedRange?.from) {
         const fromDate = new Date(selectedRange.from);
         fromDate.setDate(fromDate.getDate() + 1);
-        params.from = fromDate.toISOString().split("T")[0];
+        params.from = fromDate.toISOString().split('T')[0];
       }
 
       if (selectedRange?.to) {
         const toDate = new Date(selectedRange.to);
         toDate.setDate(toDate.getDate() + 1);
-        params.to = toDate.toISOString().split("T")[0];
+        params.to = toDate.toISOString().split('T')[0];
       }
 
       const response = await summaryData.summary(params);
@@ -64,8 +63,8 @@ function Home() {
     <>
       <div className="max-h-screen max-w-full">
         <TitleHeader
-          title={"Hallo " + userName}
-          subtitle={"Welcome to your dashboard " + userEmail}
+          title={'Hallo ' + userName}
+          subtitle={'Welcome to your dashboard ' + userEmail}
         />
 
         <div className="border-b border-gray-200 w-full"></div>
@@ -82,46 +81,46 @@ function Home() {
 
         <div className="flex justify-between items-start w-full gap-x-2">
           <CardDashboard
-            title={"Inquiry Voucher"}
-            subtitle={"Total Voucher Inquiry"}
+            title={'Inquiry Voucher'}
+            subtitle={'Total Voucher Inquiry'}
             value={
               isLoading
-                ? "Loading. . . "
+                ? 'Loading. . . '
                 : dataSummary?.totalVoucherInquiryTickets
             }
             icon={<BsTicketPerforated size={20} />}
-            color={"#FFA500"}
+            color={'#FFA500'}
           />
           <CardDashboard
-            title={"Redemption Voucher"}
-            subtitle={"Total Voucher Redemption"}
+            title={'Redemption Voucher'}
+            subtitle={'Total Voucher Redemption'}
             value={
-              isLoading ? "Loading. . . " : dataSummary?.totalVoucherRedemptions
+              isLoading ? 'Loading. . . ' : dataSummary?.totalVoucherRedemptions
             }
             icon={<BsTicketPerforated size={20} />}
-            color={"#FFA500"}
+            color={'#FFA500'}
           />
           <CardDashboard
-            title={"Inquiry Transactions"}
-            subtitle={"Total Inquiry Transactions"}
+            title={'Inquiry Transactions'}
+            subtitle={'Total Inquiry Transactions'}
             value={
               isLoading
-                ? "Loading. . . "
+                ? 'Loading. . . '
                 : dataSummary?.totalInquiryTransactions
             }
             icon={<BsTicketPerforated size={20} />}
-            color={"#FFA500"}
+            color={'#FFA500'}
           />
           <CardDashboard
-            title={"Payment Confirmation"}
-            subtitle={"Total Payment Confirmation"}
+            title={'Payment Confirmation'}
+            subtitle={'Total Payment Confirmation'}
             value={
               isLoading
-                ? "Loading. . . "
+                ? 'Loading. . . '
                 : dataSummary?.totalPaymentConfirmations
             }
             icon={<BsTicketPerforated size={20} />}
-            color={"#FFA500"}
+            color={'#FFA500'}
           />
         </div>
       </div>

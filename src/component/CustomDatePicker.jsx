@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
+import React, { useState } from 'react';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+import PropTypes from 'prop-types';
 
 const CustomDatePicker = ({ onClose, onApply }) => {
   const [range, setRange] = useState({ from: null, to: null });
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState('');
 
   const handleApply = () => {
     onApply(range);
@@ -20,23 +21,23 @@ const CustomDatePicker = ({ onClose, onApply }) => {
     let from, to;
 
     switch (option) {
-      case "Today":
+      case 'Today':
         from = today;
         to = today;
         break;
-      case "Yesterday":
+      case 'Yesterday':
         from = new Date(today.setDate(today.getDate() - 1));
         to = from;
         break;
-      case "LastWeek":
+      case 'LastWeek':
         from = new Date(today.setDate(today.getDate() - 7));
         to = new Date();
         break;
-      case "ThisMonth":
+      case 'ThisMonth':
         from = new Date(today.getFullYear(), today.getMonth(), 1);
         to = new Date(today.getFullYear(), today.getMonth() + 1, 0);
         break;
-      case "AllTime":
+      case 'AllTime':
         from = null;
         to = null;
         break;
@@ -53,18 +54,18 @@ const CustomDatePicker = ({ onClose, onApply }) => {
       <div className="w-36 p-3 bg-gray-100 rounded-l-md border-r">
         <h2 className="text-sm text-start font-semibold mb-4">Select Date</h2>
         <ul className="text-start">
-          {["Today", "Yesterday", "LastWeek", "ThisMonth", "AllTime"].map(
+          {['Today', 'Yesterday', 'LastWeek', 'ThisMonth', 'AllTime'].map(
             (option) => (
               <li
                 key={option}
                 className={`p-2 cursor-pointer rounded-md mb-2 ${
                   selectedOption === option
-                    ? "bg-blue-200 text-blue-700"
-                    : "hover:bg-gray-300"
+                    ? 'bg-blue-200 text-blue-700'
+                    : 'hover:bg-gray-300'
                 }`}
                 onClick={() => handleRangeSelect(option)}
               >
-                {option.replace(/([A-Z])/g, " $1").trim()}
+                {option.replace(/([A-Z])/g, ' $1').trim()}
               </li>
             )
           )}
@@ -97,6 +98,11 @@ const CustomDatePicker = ({ onClose, onApply }) => {
       </div>
     </div>
   );
+};
+
+CustomDatePicker.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
 };
 
 export default CustomDatePicker;

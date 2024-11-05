@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function TitleHeader({ title, subtitle }) {
   return (
@@ -10,5 +11,10 @@ function TitleHeader({ title, subtitle }) {
     </>
   );
 }
+
+TitleHeader.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+};
 
 export default TitleHeader;

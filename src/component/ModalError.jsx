@@ -1,4 +1,6 @@
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import React from 'react';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
 function ModalError({ message, onClose }) {
   return (
@@ -19,5 +21,10 @@ function ModalError({ message, onClose }) {
     </div>
   );
 }
+
+ModalError.propTypes = {
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default ModalError;

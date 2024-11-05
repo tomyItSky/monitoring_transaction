@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { React, useState } from 'react';
 
-import { useNavigate } from "react-router-dom";
-import { apiUsers } from "../utils/voucherAPI";
-import Loading from "../component/Loading";
+import { useNavigate } from 'react-router-dom';
+import { apiUsers } from '../utils/voucherAPI';
+import Loading from '../component/Loading';
+import ModalError from '../component/ModalError';
 
 function Login() {
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
   const [loadingData, setLoadingData] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const navigate = useNavigate();
@@ -22,14 +23,14 @@ function Login() {
       };
 
       await apiUsers.login(dataLogin.identifier, dataLogin.password);
-      navigate("/dashboard/home");
+      navigate('/dashboard/home');
 
       setLoadingData(false);
     } catch (error) {
       if (error.response) {
-        setErrorMessage(error.response.data.msg || "Login failed");
+        setErrorMessage(error.response.data.msg || 'Login failed');
       } else {
-        setErrorMessage("An error occurred. Please try again.");
+        setErrorMessage('An error occurred. Please try again.');
       }
     } finally {
       setLoadingData(false);
@@ -43,8 +44,8 @@ function Login() {
   return (
     <div className="container m-auto max-h-screen w-full">
       <div className="flex flex-col justify-center items-center mt-10">
-        <div className="flex flex-col justify-start items-start space-y-2 mb-3">
-          <img src={"/logo.png"} alt="Logo skyparking" className="w-20" />
+        <div className="flex flex-col justify-center items-center space-y-2 mb-3">
+          <img src={'/logo.png'} alt="Logo skyparking" className="w-20" />
           <h1 className="text-lg font-bold">Monitoring</h1>
         </div>
         <div className="flex flex-col justify-start items-start border border-slate-300 p-3 w-1/4 rounded-md">
@@ -81,6 +82,13 @@ function Login() {
           </form>
         </div>
       </div>
+
+      {errorMessage && (
+        <ModalError
+          message={errorMessage}
+          onClose={() => setErrorMessage(false)}
+        />
+      )}
     </div>
   );
 }

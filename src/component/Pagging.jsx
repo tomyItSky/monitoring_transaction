@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
@@ -10,17 +11,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       }
     } else {
       if (currentPage <= maxVisiblePages) {
-        pageNumbers.push(1, 2, 3, "...", totalPages);
+        pageNumbers.push(1, 2, 3, '...', totalPages);
       } else if (currentPage > totalPages - maxVisiblePages) {
-        pageNumbers.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
+        pageNumbers.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
       } else {
         pageNumbers.push(
           1,
-          "...",
+          '...',
           currentPage - 1,
           currentPage,
           currentPage + 1,
-          "...",
+          '...',
           totalPages
         );
       }
@@ -36,22 +37,22 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === 1}
         className={`px-3 py-1 border rounded-md ${
           currentPage === 1
-            ? "text-gray-400 cursor-not-allowed"
-            : "text-blue-500"
+            ? 'text-gray-400 cursor-not-allowed'
+            : 'text-blue-500'
         }`}
       >
         ←
       </button>
 
       {getPageNumbers().map((page, index) =>
-        typeof page === "number" ? (
+        typeof page === 'number' ? (
           <button
             key={index}
             onClick={() => onPageChange(page)}
             className={`px-3 py-1 border rounded-md ${
               currentPage === page
-                ? "bg-blue-500 text-white"
-                : "text-blue-500 hover:bg-blue-100"
+                ? 'bg-blue-500 text-white'
+                : 'text-blue-500 hover:bg-blue-100'
             }`}
           >
             {page}
@@ -68,14 +69,20 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === totalPages}
         className={`px-3 py-1 border rounded-md ${
           currentPage === totalPages
-            ? "text-gray-400 cursor-not-allowed"
-            : "text-blue-500"
+            ? 'text-gray-400 cursor-not-allowed'
+            : 'text-blue-500'
         }`}
       >
         →
       </button>
     </div>
   );
+};
+
+Pagination.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
 };
 
 export default Pagination;

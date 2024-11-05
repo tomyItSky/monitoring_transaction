@@ -1,4 +1,6 @@
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import React from 'react';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
 function ModalSuccess({ message, onClose }) {
   return (
@@ -19,5 +21,10 @@ function ModalSuccess({ message, onClose }) {
     </div>
   );
 }
+
+ModalSuccess.propTypes = {
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default ModalSuccess;

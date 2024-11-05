@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const TabPage = ({ tabs, activeTab, setActiveTab }) => {
   return (
@@ -10,8 +11,8 @@ const TabPage = ({ tabs, activeTab, setActiveTab }) => {
             onClick={() => setActiveTab(tab)}
             className={`py-4 px-1 text-sm font-medium ${
               activeTab === tab
-                ? "border-b-2 border-blue-500 text-blue-600"
-                : "border-b-2 border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300"
+                ? 'border-b-2 border-blue-500 text-blue-600'
+                : 'border-b-2 border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
             }`}
           >
             {tab}
@@ -20,6 +21,12 @@ const TabPage = ({ tabs, activeTab, setActiveTab }) => {
       </div>
     </div>
   );
+};
+
+TabPage.propTypes = {
+  tabs: PropTypes.array.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  setActiveTab: PropTypes.func.isRequired,
 };
 
 export default TabPage;
