@@ -86,7 +86,7 @@ function Home() {
             value={
               isLoading
                 ? 'Loading. . . '
-                : dataSummary?.totalVoucherInquiryTickets
+                : Number(dataSummary?.totalVoucherInquiryTickets)
             }
             icon={<BsTicketPerforated size={20} />}
             color={'#FFA500'}
@@ -95,7 +95,9 @@ function Home() {
             title={'Redemption Voucher'}
             subtitle={'Total Voucher Redemption'}
             value={
-              isLoading ? 'Loading. . . ' : dataSummary?.totalVoucherRedemptions
+              isLoading
+                ? 'Loading. . . '
+                : Number(dataSummary?.totalVoucherRedemptions)
             }
             icon={<BsTicketPerforated size={20} />}
             color={'#FFA500'}
@@ -106,7 +108,7 @@ function Home() {
             value={
               isLoading
                 ? 'Loading. . . '
-                : dataSummary?.totalInquiryTransactions
+                : Number(dataSummary?.totalInquiryTransactions)
             }
             icon={<BsTicketPerforated size={20} />}
             color={'#FFA500'}
@@ -117,7 +119,7 @@ function Home() {
             value={
               isLoading
                 ? 'Loading. . . '
-                : dataSummary?.totalPaymentConfirmations
+                : Number(dataSummary?.totalPaymentConfirmations)
             }
             icon={<BsTicketPerforated size={20} />}
             color={'#FFA500'}
