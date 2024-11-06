@@ -8,6 +8,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { apiUsers } from '../utils/voucherAPI';
 import Loading from './Loading';
+import { LiaUserInjuredSolid } from 'react-icons/lia';
 
 function Sidebar() {
   const [userName, setUserName] = useState('');
@@ -107,6 +108,21 @@ function Sidebar() {
               <div className="flex flex-row justify-start items-center gap-x-2">
                 <LuParkingSquare size={20} />
                 Parking
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/user-management"
+              className={`block py-2.5 px-4 rounded hover:bg-gray-700 my-2 ${
+                location.pathname === '/dashboard/user-management'
+                  ? 'bg-slate-400'
+                  : ''
+              }`}
+            >
+              <div className="flex flex-row justify-start items-center gap-x-2">
+                <LiaUserInjuredSolid size={20} />
+                Users
               </div>
             </NavLink>
           </li>

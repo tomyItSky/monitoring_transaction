@@ -1,12 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Dashboard from "./layout/Dashboard";
-import ProtectAuth from "./component/ProtectAuth";
-import DashboardLayout from "./layout/Dashboard";
-import Login from "./pages/Login";
-import Voucher from "./pages/Voucher";
-import Parking from "./pages/Parking";
-import Home from "./pages/Home";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
+import ProtectAuth from './component/ProtectAuth';
+import DashboardLayout from './layout/Dashboard';
+import Login from './pages/Login';
+import Voucher from './pages/Voucher';
+import Parking from './pages/Parking';
+import Home from './pages/Home';
+import UserManagement from './pages/UserManagement';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="Home" element={<Home />} />
             <Route path="voucher" element={<Voucher />} />
             <Route path="transactions" element={<Parking />} />
+            <Route path="user-management" element={<UserManagement />} />
           </Route>
         </Routes>
       </Router>

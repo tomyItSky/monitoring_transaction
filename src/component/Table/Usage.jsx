@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { voucher } from "../../utils/voucherAPI";
-import Pagination from "../Pagging";
-import LoadingTable from "../LoadingTable";
-import { format } from "date-fns";
-import { HiOutlineDocumentSearch } from "react-icons/hi";
-import { CiFilter } from "react-icons/ci";
-import CustomDatePicker from "../CustomDatePicker";
+import React, { useEffect, useState } from 'react';
+import { voucher } from '../../utils/voucherAPI';
+import Pagination from '../Pagging';
+import LoadingTable from '../LoadingTable';
+import { format } from 'date-fns';
+import { HiOutlineDocumentSearch } from 'react-icons/hi';
+import { CiFilter } from 'react-icons/ci';
+import CustomDatePicker from '../CustomDatePicker';
 
 export default function Usage() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalItems, setTotalItems] = useState(0);
@@ -63,13 +63,13 @@ export default function Usage() {
         if (selectedRange?.from) {
           const fromDate = new Date(selectedRange.from);
           fromDate.setDate(fromDate.getDate() + 1);
-          params.from = fromDate.toISOString().split("T")[0];
+          params.from = fromDate.toISOString().split('T')[0];
         }
 
         if (selectedRange?.to) {
           const toDate = new Date(selectedRange.to);
           toDate.setDate(toDate.getDate() + 1);
-          params.to = toDate.toISOString().split("T")[0];
+          params.to = toDate.toISOString().split('T')[0];
         }
 
         const response = await voucher.usage(
@@ -108,7 +108,7 @@ export default function Usage() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <input
-            type="text"
+            type="search"
             placeholder="Search"
             className="border rounded-lg p-2 w-72"
             value={searchTerm}
@@ -162,35 +162,35 @@ export default function Usage() {
                 >
                   <td className="p-4">{index + 1}</td>
                   <td className="p-4">
-                    {format(new Date(item.CreatedOn), "dd-MMM-yyyy HH:mm:ss")}
+                    {format(new Date(item.CreatedOn), 'dd-MMM-yyyy HH:mm:ss')}
                   </td>
                   <td className="p-4">{item.CompanyName}</td>
                   <td className="p-4">{item.MerchantID}</td>
                   <td className="p-4">{item.TransactionNo}</td>
                   <td className="p-4">
-                    {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
+                    {new Intl.NumberFormat('id-ID', {
+                      style: 'currency',
+                      currency: 'IDR',
                       maximumFractionDigits: 0,
                     }).format(item.TotalTariff)}
                   </td>
                   <td
                     className={`p-4 ${
-                      merchantResponse?.responseStatus === "Success"
-                        ? "text-green-500"
-                        : "text-red-500"
+                      merchantResponse?.responseStatus === 'Success'
+                        ? 'text-green-500'
+                        : 'text-red-500'
                     }`}
                   >
-                    {merchantResponse?.responseStatus ?? "-"}
+                    {merchantResponse?.responseStatus ?? '-'}
                   </td>
                   <td
                     className={`p-4 ${
-                      postResponse?.responseStatus === "Success"
-                        ? "text-green-500"
-                        : "text-red-500"
+                      postResponse?.responseStatus === 'Success'
+                        ? 'text-green-500'
+                        : 'text-red-500'
                     }`}
                   >
-                    {postResponse?.responseStatus ?? "-"}
+                    {postResponse?.responseStatus ?? '-'}
                   </td>
                   <td>
                     <HiOutlineDocumentSearch
@@ -215,10 +215,10 @@ export default function Usage() {
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-row justify-start items-center gap-x-3">
           <p>
-            Show Result{" "}
+            Show Result{' '}
             <strong>
               {currentPage} - {itemsPerPage}
-            </strong>{" "}
+            </strong>{' '}
             of <strong>{totalItems}</strong>
           </p>
           <select
@@ -269,15 +269,15 @@ export default function Usage() {
                     <tr>
                       <td className="p-4">
                         {selectedDetail.merchantData?.response?.data
-                          ?.licensePlateNo ?? "-"}
+                          ?.licensePlateNo ?? '-'}
                       </td>
                       <td className="p-4">
                         {selectedDetail.merchantData?.response?.data
-                          ?.transactionNo ?? "-"}
+                          ?.transactionNo ?? '-'}
                       </td>
                       <td className="p-4">
                         {selectedDetail.merchantData?.response?.data
-                          ?.transactionStatus ?? "-"}
+                          ?.transactionStatus ?? '-'}
                       </td>
                     </tr>
                   </tbody>
@@ -297,15 +297,15 @@ export default function Usage() {
                     <tr>
                       <td className="p-4">
                         {selectedDetail.postData?.response?.data
-                          ?.licensePlateNo ?? "-"}
+                          ?.licensePlateNo ?? '-'}
                       </td>
                       <td className="p-4">
                         {selectedDetail.postData?.response?.data
-                          ?.transactionNo ?? "-"}
+                          ?.transactionNo ?? '-'}
                       </td>
                       <td className="p-4">
                         {selectedDetail.postData?.response?.data
-                          ?.transactionStatus ?? "-"}
+                          ?.transactionStatus ?? '-'}
                       </td>
                     </tr>
                   </tbody>

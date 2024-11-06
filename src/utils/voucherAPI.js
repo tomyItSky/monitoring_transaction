@@ -1,10 +1,10 @@
-import { configAPI } from "./configAPI";
+import { configAPI } from './configAPI';
 
 export const apiUsers = {
   login: async (username, password) => {
     try {
       const response = await configAPI.post(
-        "/v01/monitoring-voucher/api/login",
+        '/v01/monitoring-voucher/api/login',
         {
           identifier: username,
           password: password,
@@ -19,7 +19,7 @@ export const apiUsers = {
   logout: async () => {
     try {
       const response = await configAPI.get(
-        "/v01/monitoring-voucher/api/logout"
+        '/v01/monitoring-voucher/api/logout'
       );
       return response.data;
     } catch (error) {
@@ -29,7 +29,41 @@ export const apiUsers = {
   detailUsers: async () => {
     try {
       const response = await configAPI.get(
-        "/v01/monitoring-voucher/api/getuserbyId"
+        '/v01/monitoring-voucher/api/getuserbyId'
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  },
+
+  getAllUsers: async (page, limit, search, from, to) => {
+    try {
+      const response = await configAPI.get(
+        '/v01/monitoring-voucher/api/get-all',
+        { params: { page, limit, search, from, to } }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  },
+
+  addUsers: async (formData) => {
+    try {
+      const response = await configAPI.post(
+        '/v01/monitoring-voucher/api/create-user',
+        formData
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  },
+  getRole: async () => {
+    try {
+      const response = await configAPI.get(
+        '/v01/monitoring-voucher/api/getrole-all'
       );
       return response.data;
     } catch (error) {
@@ -53,7 +87,7 @@ export const voucher = {
   inquiry: async (page, limit, search, from, to) => {
     try {
       const response = await configAPI.get(
-        "/v01/monitoring-voucher/api/vouchers/inquiry",
+        '/v01/monitoring-voucher/api/vouchers/inquiry',
         {
           params: {
             page,
@@ -73,7 +107,7 @@ export const voucher = {
   usage: async (page, limit, search, from, to) => {
     try {
       const response = await configAPI.get(
-        "/v01/monitoring-voucher/api/vouchers/usage",
+        '/v01/monitoring-voucher/api/vouchers/usage',
         {
           params: {
             page,
@@ -93,7 +127,7 @@ export const voucher = {
   redemption: async (page, limit, search, from, to) => {
     try {
       const response = await configAPI.get(
-        "/v01/monitoring-voucher/api/vouchers/redemption",
+        '/v01/monitoring-voucher/api/vouchers/redemption',
         {
           params: {
             page,
@@ -115,7 +149,7 @@ export const Parking = {
   inquiry: async (page, limit, search, from, to) => {
     try {
       const response = await configAPI.get(
-        "/v01/transaction-parking/api/transactions/getInquiry",
+        '/v01/transaction-parking/api/transactions/getInquiry',
         {
           params: {
             page,
@@ -135,7 +169,7 @@ export const Parking = {
   payment: async (page, limit, search, from, to) => {
     try {
       const response = await configAPI.get(
-        "/v01/transaction-parking/api/transactions/paymentConfirmation",
+        '/v01/transaction-parking/api/transactions/paymentConfirmation',
         {
           params: {
             page,
@@ -154,9 +188,9 @@ export const Parking = {
 };
 
 export const summaryData = {
-  summary: async (startDate = "", endDate = "") => {
+  summary: async (startDate = '', endDate = '') => {
     try {
-      const response = await configAPI.get("/v01/summary/api/getSummary", {
+      const response = await configAPI.get('/v01/summary/api/getSummary', {
         params: {
           startDate,
           endDate,

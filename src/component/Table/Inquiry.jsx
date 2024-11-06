@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { voucher } from "../../utils/voucherAPI";
-import Pagination from "../Pagging";
-import LoadingTable from "../LoadingTable";
-import { format } from "date-fns";
-import CustomDatePicker from "../CustomDatePicker";
-import { CiFilter } from "react-icons/ci";
+import React, { useEffect, useState } from 'react';
+import { voucher } from '../../utils/voucherAPI';
+import Pagination from '../Pagging';
+import LoadingTable from '../LoadingTable';
+import { format } from 'date-fns';
+import CustomDatePicker from '../CustomDatePicker';
+import { CiFilter } from 'react-icons/ci';
 
 export default function Inquiry() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalItems, setTotalItems] = useState(0);
@@ -42,13 +42,13 @@ export default function Inquiry() {
         if (selectedRange?.from) {
           const fromDate = new Date(selectedRange.from);
           fromDate.setDate(fromDate.getDate() + 1);
-          params.from = fromDate.toISOString().split("T")[0];
+          params.from = fromDate.toISOString().split('T')[0];
         }
 
         if (selectedRange?.to) {
           const toDate = new Date(selectedRange.to);
           toDate.setDate(toDate.getDate() + 1);
-          params.to = toDate.toISOString().split("T")[0];
+          params.to = toDate.toISOString().split('T')[0];
         }
 
         const response = await voucher.inquiry(
@@ -88,7 +88,7 @@ export default function Inquiry() {
         {/* Search */}
         <div className="flex items-center">
           <input
-            type="text"
+            type="search"
             placeholder="Search"
             className="border rounded-lg p-2 w-72"
             value={search}
@@ -134,7 +134,7 @@ export default function Inquiry() {
               >
                 <td className="p-4">{index + 1}</td>
                 <td className="p-4">
-                  {format(new Date(voucher.CreatedOn), "dd-MMM-yyyy HH:mm:ss")}
+                  {format(new Date(voucher.CreatedOn), 'dd-MMM-yyyy HH:mm:ss')}
                 </td>
                 <td className="p-4">{voucher.CompanyName}</td>
                 <td className="p-4">{voucher.MerchantID}</td>
@@ -145,14 +145,14 @@ export default function Inquiry() {
                   className={`p-4 ${
                     voucher.MerchantDataRequest !== null &&
                     voucher.MerchantDataResponse !== null
-                      ? "text-green-600 bg-green-100"
-                      : "text-red-600 bg-red-100"
+                      ? 'text-green-600 bg-green-100'
+                      : 'text-red-600 bg-red-100'
                   }`}
                 >
                   {voucher.MerchantDataRequest !== null &&
                   voucher.MerchantDataResponse !== null
-                    ? "Success"
-                    : "Failed"}
+                    ? 'Success'
+                    : 'Failed'}
                 </td>
               </tr>
             ))
@@ -170,10 +170,10 @@ export default function Inquiry() {
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-row justify-start items-center gap-x-3">
           <p>
-            Show Result{" "}
+            Show Result{' '}
             <strong>
               {page} - {itemsPerPage}
-            </strong>{" "}
+            </strong>{' '}
             of <strong>{totalItems}</strong>
           </p>
           <select

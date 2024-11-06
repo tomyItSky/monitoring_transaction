@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Parking } from "../../utils/voucherAPI";
-import Pagination from "../Pagging";
-import LoadingTable from "../LoadingTable";
-import { format } from "date-fns";
-import { HiOutlineDocumentSearch } from "react-icons/hi";
-import { CiFilter } from "react-icons/ci";
-import CustomDatePicker from "../CustomDatePicker";
+import React, { useEffect, useState } from 'react';
+import { Parking } from '../../utils/voucherAPI';
+import Pagination from '../Pagging';
+import LoadingTable from '../LoadingTable';
+import { format } from 'date-fns';
+import { HiOutlineDocumentSearch } from 'react-icons/hi';
+import { CiFilter } from 'react-icons/ci';
+import CustomDatePicker from '../CustomDatePicker';
 
 export default function InquiryTrx() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalItems, setTotalItems] = useState(0);
@@ -45,13 +45,13 @@ export default function InquiryTrx() {
         if (selectedRange?.from) {
           const fromDate = new Date(selectedRange.from);
           fromDate.setDate(fromDate.getDate() + 1);
-          params.from = fromDate.toISOString().split("T")[0];
+          params.from = fromDate.toISOString().split('T')[0];
         }
 
         if (selectedRange?.to) {
           const toDate = new Date(selectedRange.to);
           toDate.setDate(toDate.getDate() + 1);
-          params.to = toDate.toISOString().split("T")[0];
+          params.to = toDate.toISOString().split('T')[0];
         }
 
         const response = await Parking.inquiry(
@@ -65,7 +65,7 @@ export default function InquiryTrx() {
         setTotalPages(response.totalPages);
         setTotalItems(response.totalItems);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       } finally {
         setIsLoading(false);
       }
@@ -115,7 +115,7 @@ export default function InquiryTrx() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <input
-            type="text"
+            type="search"
             placeholder="Search"
             className="border rounded-lg p-2 w-72"
             value={searchTerm}
@@ -179,7 +179,7 @@ export default function InquiryTrx() {
                   >
                     <td className="p-4 whitespace-nowrap">{index + 1}</td>
                     <td className="p-4 whitespace-nowrap">
-                      {format(new Date(item.CreatedOn), "dd-MMM-yyyy HH:mm:ss")}
+                      {format(new Date(item.CreatedOn), 'dd-MMM-yyyy HH:mm:ss')}
                     </td>
                     <td className="p-4 whitespace-nowrap">
                       {item.CompanyName}
@@ -195,29 +195,29 @@ export default function InquiryTrx() {
                       </div>
                     </td>
                     <td className="p-4 whitespace-nowrap">
-                      {new Intl.NumberFormat("id-ID", {
-                        style: "currency",
-                        currency: "IDR",
+                      {new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
                         maximumFractionDigits: 0,
                       }).format(dataParsingDataDetail?.tariff ?? 0)}
                     </td>
                     <td
                       className={`p-4 whitespace-nowrap ${
-                        dataParsingMerchant?.responseStatus === "Success"
-                          ? "text-green-500"
-                          : "text-red-500"
+                        dataParsingMerchant?.responseStatus === 'Success'
+                          ? 'text-green-500'
+                          : 'text-red-500'
                       }`}
                     >
-                      {dataParsingMerchant?.responseStatus ?? "-"}
+                      {dataParsingMerchant?.responseStatus ?? '-'}
                     </td>
                     <td
                       className={`p-4 whitespace-nowrap ${
-                        dataParsingPost?.responseStatus === "Success"
-                          ? "text-green-500"
-                          : "text-red-500"
+                        dataParsingPost?.responseStatus === 'Success'
+                          ? 'text-green-500'
+                          : 'text-red-500'
                       }`}
                     >
-                      {dataParsingPost?.responseStatus ?? "-"}
+                      {dataParsingPost?.responseStatus ?? '-'}
                     </td>
                     <td>
                       <HiOutlineDocumentSearch
@@ -243,10 +243,10 @@ export default function InquiryTrx() {
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-row justify-start items-center gap-x-3">
           <p>
-            Show Result{" "}
+            Show Result{' '}
             <strong>
               {currentPage} - {itemsPerPage}
-            </strong>{" "}
+            </strong>{' '}
             of <strong>{totalItems}</strong>
           </p>
           <select
