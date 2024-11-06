@@ -96,7 +96,6 @@ function Users() {
           params.from,
           params.to
         );
-        console.log(response);
         setData(response.UsersData);
         setTotalPages(response.totalPages);
         setTotalItems(response.totalItems);
